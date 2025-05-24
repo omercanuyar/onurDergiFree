@@ -1,0 +1,68 @@
+.header {
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  height: 70px;
+}
+.logo-section {
+  display: flex;
+  align-items: center;
+}
+.logo-text {
+  font-size: 2.2rem;
+  font-weight: bold;
+  margin-right: 15px;
+  letter-spacing: 2px;
+  color: #222;
+}
+.slogan {
+  font-weight: bold;
+  color: #222;
+  font-size: 1.1rem;
+}
+.nav a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: #222;
+  font-weight: 500;
+  font-size: 1.1rem;
+  transition: color 0.2s;
+  position: relative;
+  padding: 6px 18px;
+  border-radius: 6px;
+  overflow: hidden;
+  z-index: 1;
+}
+.nav a::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 0%;
+  background: linear-gradient(90deg, #b71c1c 0%, #d32f2f 100%);
+  z-index: -1;
+  transition: width 0.35s cubic-bezier(.4,0,.2,1);
+  border-radius: 6px;
+}
+.nav a:hover,
+.nav a:focus {
+  color: #fff;
+}
+.nav a:hover::before,
+.nav a:focus::before {
+  width: 100%;
+}
+.nav a:active::before {
+  width: 100%;
+}
+.nav a:hover::before,
+.nav a:focus::before,
+.nav a:active::before {
+  background: linear-gradient(90deg, #b71c1c 0%, #d32f2f 100%);
+}
+.search-icon {
+  margin-left: 20px;
+  font-size: 1.3rem;
+  cursor: pointer;
+} 

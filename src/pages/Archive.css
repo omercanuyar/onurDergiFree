@@ -1,0 +1,137 @@
+.archive-container {
+  padding: 40px 0;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.archive-container h1 {
+  text-align: center;
+  margin-bottom: 40px;
+  color: #333;
+}
+
+.magazine-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px 32px;
+  justify-items: center;
+}
+
+.magazine-item {
+  width: 100%;
+  max-width: 420px;
+  background: #d1d2d1;
+  border-radius: 12px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.10);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 24px;
+}
+
+.magazine-cover {
+  width: 100%;
+  height: 560px;
+  background: #fff;
+  border-radius: 12px 12px 0 0;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: transform 0.2s;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.magazine-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.magazine-cover:hover {
+  transform: scale(1.03);
+}
+
+.magazine-info {
+  width: 100%;
+  text-align: center;
+  margin-top: 18px;
+}
+
+.magazine-issue {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: #222;
+}
+
+.magazine-date {
+  font-size: 1.1rem;
+  color: #666;
+  margin-top: 4px;
+  font-style: italic;
+}
+
+/* Modal styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 40px;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 24px;
+  border-radius: 12px;
+  max-width: 90vw;
+  max-height: 90vh;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: auto;
+}
+
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 2.5rem;
+  color: white;
+  cursor: pointer;
+  z-index: 1001;
+  transition: transform 0.2s ease;
+}
+
+.close-btn:hover {
+  transform: scale(1.1);
+}
+
+.demoPage {
+  background: white;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content iframe {
+  width: 70vw;
+  height: 70vh;
+  border-radius: 8px;
+  background: #f5f5f5;
+} 
