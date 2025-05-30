@@ -13,11 +13,11 @@ export default function Header() {
         <Logo style={{ width: 230, height: 100 }} />
       </div>
       <nav className="nav">
-        <Link to="/">ANASAYFA</Link>
-        <Link to="/hakkimizda">HAKKIMIZDA</Link>
-        <Link to="/arsiv">ARŞİV</Link>
-        <Link to="/iletisim">İLETİŞİM</Link>
-        <span className="search-icon" role="img" aria-label="search">🔍</span>
+        <Link to="/" className="nav-link">ANASAYFA</Link>
+        <span className="nav-divider" />
+        <Link to="/hakkimizda" className="nav-link">HAKKIMIZDA</Link>
+        <span className="nav-divider" />
+        <Link to="/arsiv" className="nav-link">ARŞİV</Link>
       </nav>
     </header>
   );
