@@ -3,6 +3,7 @@ import './App.css';
 import Header from "./components/Header";
 import CoverPlaceholder from "./components/CoverPlaceholder";
 import Archive from './pages/Archive';
+import Hakkimizda from './components/Hakkimizda';
 import Footer from './components/Footer';
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
         <main>
           <Routes>
             <Route path="/" element={<CoverPlaceholder />} />
+            <Route path="/hakkimizda" element={<Hakkimizda />} />
             <Route path="/arsiv" element={<Archive />} />
           </Routes>
         </main>
