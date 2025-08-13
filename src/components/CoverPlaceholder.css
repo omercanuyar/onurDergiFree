@@ -124,4 +124,46 @@ body, html, #root, .App {
 .footer-author {
   color: #b71c1c;
   font-size: 0.95rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .cover-placeholder {
+    padding: 15px;
+  }
+  
+  .cover-frame {
+    width: 300px;
+    height: 400px;
+  }
+  
+  .close-btn {
+    top: 20px;
+    right: 20px;
+    font-size: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cover-placeholder {
+    padding: 10px;
+  }
+  
+  .cover-frame {
+    width: 250px;
+    height: 335px;
+  }
+  
+  .close-btn {
+    top: 15px;
+    right: 15px;
+    font-size: 35px;
+  }
+}
+
+@media (max-width: 360px) {
+  .cover-frame {
+    width: 200px;
+    height: 268px;
+  }
 } 

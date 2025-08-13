@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Archive.css';
 import HTMLFlipBook from 'react-pageflip';
 import { Document, Page, pdfjs } from 'react-pdf';
+import MobilePDFViewer from '../components/MobilePDFViewer';
 import kapakTibbiye from "../assets/png/kapakTibbiye.png";
 import kapakTibbiy2 from "../assets/png/coverTibbiyeSecond.png";
 import coverTibbiye3 from "../assets/png/coverTibbiye3.png";
@@ -37,6 +38,18 @@ export default function Archive() {
     const [open, setOpen] = useState(false);
     const [selectedMagazine, setSelectedMagazine] = useState(null);
     const [numPages, setNumPages] = useState(null);
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkScreenSize = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+
+        checkScreenSize();
+        window.addEventListener('resize', checkScreenSize);
+
+        return () => window.removeEventListener('resize', checkScreenSize);
+    }, []);
 
     function onDocumentLoadSuccess({ numPages }) {
         setNumPages(numPages);
@@ -100,28 +113,32 @@ export default function Archive() {
             </div>
 
             {open && selectedMagazine && (
-                <div className="modal-overlay" onClick={handleClose}>
-                    <button className="close-btn" onClick={handleClose}>&times;</button>
-                    <div onClick={(e) => e.stopPropagation()}>
-                        <HTMLFlipBook 
-                            width={600} 
-                            height={770}
-                            showCover={true}
-                            flippingTime={1000}
-                            usePortrait={false}
-                            startPage={1}
-                            startZIndex={1}
-                        >
-                            {[...Array(numPages).keys()].map((pNum) => (
-                                <Pages key={pNum} number={pNum + 1}>
-                                    <Document file={selectedMagazine.pdf} onLoadSuccess={onDocumentLoadSuccess}>
-                                        <Page pageNumber={pNum + 1} width={550} renderAnnotationLayer={false} renderTextLayer={false} />
-                                    </Document>
-                                </Pages>
-                            ))}
-                        </HTMLFlipBook>
+                isMobile ? (
+                    <MobilePDFViewer pdfFile={selectedMagazine.pdf} onClose={handleClose} />
+                ) : (
+                    <div className="modal-overlay" onClick={handleClose}>
+                        <button className="close-btn" onClick={handleClose}>&times;</button>
+                        <div onClick={(e) => e.stopPropagation()}>
+                            <HTMLFlipBook 
+                                width={600} 
+                                height={770}
+                                showCover={true}
+                                flippingTime={1000}
+                                usePortrait={false}
+                                startPage={1}
+                                startZIndex={1}
+                            >
+                                {[...Array(numPages).keys()].map((pNum) => (
+                                    <Pages key={pNum} number={pNum + 1}>
+                                        <Document file={selectedMagazine.pdf} onLoadSuccess={onDocumentLoadSuccess}>
+                                            <Page pageNumber={pNum + 1} width={550} renderAnnotationLayer={false} renderTextLayer={false} />
+                                        </Document>
+                                    </Pages>
+                                ))}
+                            </HTMLFlipBook>
+                        </div>
                     </div>
-                </div>
+                )
             )}
         </div>
     );

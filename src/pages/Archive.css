@@ -134,4 +134,74 @@
   height: 70vh;
   border-radius: 8px;
   background: #f5f5f5;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .magazine-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px 24px;
+  }
+  
+  .magazine-item {
+    max-width: 380px;
+  }
+  
+  .magazine-cover {
+    height: 500px;
+  }
+}
+
+@media (max-width: 768px) {
+  .archive-container {
+    padding: 20px 15px;
+  }
+  
+  .magazine-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px 16px;
+  }
+  
+  .magazine-item {
+    max-width: 320px;
+  }
+  
+  .magazine-cover {
+    height: 420px;
+  }
+  
+  .magazine-issue {
+    font-size: 1.2rem;
+  }
+  
+  .magazine-date {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .archive-container {
+    padding: 15px 10px;
+  }
+  
+  .magazine-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .magazine-item {
+    max-width: 280px;
+  }
+  
+  .magazine-cover {
+    height: 370px;
+  }
+  
+  .magazine-issue {
+    font-size: 1.1rem;
+  }
+  
+  .magazine-date {
+    font-size: 0.95rem;
+  }
 } 

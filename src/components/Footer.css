@@ -41,4 +41,47 @@
 .footer-author {
   color: #b71c1c;
   font-size: 0.95rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .footer {
+    height: 60px;
+    margin-top: 32px;
+  }
+  
+  .footer-socials {
+    height: 60px;
+    gap: 12px;
+  }
+  
+  .footer-socials a {
+    height: 60px;
+  }
+  
+  .footer-icon {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    height: 50px;
+    margin-top: 24px;
+  }
+  
+  .footer-socials {
+    height: 50px;
+    gap: 10px;
+  }
+  
+  .footer-socials a {
+    height: 50px;
+  }
+  
+  .footer-icon {
+    width: 24px;
+    height: 24px;
+  }
 } 
