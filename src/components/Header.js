@@ -24,6 +24,8 @@ export default function Header() {
         <nav className="nav">
           <Link to="/" className="nav-link">ANASAYFA</Link>
           <span className="nav-divider" />
+          <Link to="/yazilar" className="nav-link">YAZILAR</Link>
+          <span className="nav-divider" />
           <Link to="/hakkimizda" className="nav-link">HAKKIMIZDA</Link>
           <span className="nav-divider" />
           <Link to="/arsiv" className="nav-link">ARŞİV</Link>
@@ -35,6 +37,7 @@ export default function Header() {
       
       <nav className={`mobile-nav ${mobileMenuOpen ? 'active' : ''}`}>
         <Link to="/" className="nav-link" onClick={closeMobileMenu}>ANASAYFA</Link>
+        <Link to="/yazilar" className="nav-link" onClick={closeMobileMenu}>YAZILAR</Link>
         <Link to="/hakkimizda" className="nav-link" onClick={closeMobileMenu}>HAKKIMIZDA</Link>
         <Link to="/arsiv" className="nav-link" onClick={closeMobileMenu}>ARŞİV</Link>
       </nav>

@@ -1,3 +1,13 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Disallow: /giris-190-ozel
+Disallow: /yonetim-190-panel
+
+# Sitemap
+Sitemap: https://190tibbiyeli.com/sitemap.xml
+
+# Allow all crawlers to index public pages
+Allow: /
+Allow: /yazilar
+Allow: /hakkimizda
+Allow: /arsiv

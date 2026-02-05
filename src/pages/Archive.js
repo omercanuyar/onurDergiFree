@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Archive.css';
+import { useData } from '../context/DataContext';
 import HTMLFlipBook from 'react-pageflip';
 import { Document, Page, pdfjs } from 'react-pdf';
 import MobilePDFViewer from '../components/MobilePDFViewer';
@@ -35,6 +36,7 @@ const Pages = React.forwardRef((props, ref) => {
 Pages.displayName = 'Pages';
 
 export default function Archive() {
+    const { magazines: adminMagazines } = useData();
     const [open, setOpen] = useState(false);
     const [selectedMagazine, setSelectedMagazine] = useState(null);
     const [numPages, setNumPages] = useState(null);
@@ -55,8 +57,8 @@ export default function Archive() {
         setNumPages(numPages);
     }
 
-    // 12 dergi, her birine sayı ve tarih bilgisi ekliyorum
-    const magazines = [
+    // Statik dergiler
+    const staticMagazines = [
         { id: 1, title: '', issue: 'Sayı 1', date: 'Mart 2017', cover: kapakTibbiye, pdf: require("../assets/journals/tibbiye.pdf") },
         { id: 2, title: '', issue: 'Sayı 2', date: 'Mayıs 2017', cover: kapakTibbiy2, pdf: require("../assets/journals/tibbiyeliSecond.pdf") },
         { id: 3, title: '', issue: 'Sayı 3', date: 'Eylül 2017', cover: coverTibbiye3, pdf: require("../assets/journals/tibbiyeli3.pdf") },
@@ -77,6 +79,19 @@ export default function Archive() {
         { id: 18, title: '', issue: 'Sayı 20', date: 'Mayıs 2025', cover: coverTibbiye20, pdf: require("../assets/journals/tibbiyeli20.pdf") },
     ];
 
+    // Admin panelinden eklenen dergileri statik dergilerle birleştir
+    const adminMagazinesList = adminMagazines.map((mag, index) => ({
+        id: `admin-${mag.id}`,
+        title: mag.title || '',
+        issue: mag.issue,
+        date: mag.date,
+        cover: mag.coverImage,
+        pdf: mag.pdfFile,
+        isAdminAdded: true
+    }));
+
+    const allMagazines = [...staticMagazines, ...adminMagazinesList];
+
     const handleMagazineClick = (magazine) => {
         setSelectedMagazine(magazine);
         setOpen(true);
@@ -90,7 +105,7 @@ export default function Archive() {
     return (
         <div className="archive-container">           
             <div className="magazine-grid">
-                {magazines.map((magazine) => (
+                {allMagazines.map((magazine) => (
                     <div key={magazine.id} className="magazine-item">
                         <div className="magazine-cover" onClick={() => handleMagazineClick(magazine)}>
                             {magazine.cover ? (
