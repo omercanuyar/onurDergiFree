@@ -8,8 +8,10 @@
   padding: 20px;
 }
 .cover-frame {
-  width: 500px;
-  height: 670px;
+  width: 40vw;
+  max-width: 700px;
+  height: auto;
+  aspect-ratio: 500 / 670;
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -133,8 +135,9 @@ body, html, #root, .App {
   }
   
   .cover-frame {
-    width: 300px;
-    height: 400px;
+    width: 85vw;
+    height: auto;
+    aspect-ratio: 500 / 670;
   }
   
   .close-btn {
@@ -150,8 +153,9 @@ body, html, #root, .App {
   }
   
   .cover-frame {
-    width: 250px;
-    height: 335px;
+    width: 90vw;
+    height: auto;
+    aspect-ratio: 500 / 670;
   }
   
   .close-btn {
@@ -163,7 +167,8 @@ body, html, #root, .App {
 
 @media (max-width: 360px) {
   .cover-frame {
-    width: 200px;
-    height: 268px;
+    width: 92vw;
+    height: auto;
+    aspect-ratio: 500 / 670;
   }
-} 
+}
