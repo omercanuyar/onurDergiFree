@@ -29,7 +29,8 @@
 }
 
 .archive-container .magazine-cover {
-  width: 100%;
+  width: auto;
+  max-width: 100%;
   height: 420px;
   background: #d1d2d1;
   border-radius: 12px 12px 0 0;
@@ -43,7 +44,7 @@
 }
 
 .archive-container .magazine-cover img {
-  width: 100%;
+  width: auto;
   height: 100%;
   object-fit: contain;
   display: block;
