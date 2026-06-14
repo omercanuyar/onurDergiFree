@@ -4,7 +4,7 @@ Disallow: /giris-190-ozel
 Disallow: /yonetim-190-panel
 
 # Sitemap
-Sitemap: https://190tibbiyeli.com/sitemap.xml
+Sitemap: https://190tibbiyeli.com.tr/sitemap.xml
 
 # Allow all crawlers to index public pages
 Allow: /
