@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.ffd432fc.css",
-    "main.js": "/static/js/main.68a2e8d4.js",
+    "main.js": "/static/js/main.beee3a43.js",
     "static/js/453.17653a4e.chunk.js": "/static/js/453.17653a4e.chunk.js",
     "static/media/coverTibbiye20.png": "/static/media/coverTibbiye20.4713aa6957cfab6881b6.png",
     "static/media/coverTibbiye11.png": "/static/media/coverTibbiye11.80a9c5ec500d425b670a.png",
@@ -27,11 +27,11 @@
     "static/media/logo.svg": "/static/media/logo.fe35a61ae1fadb4909d1868405c15c0e.svg",
     "index.html": "/index.html",
     "main.ffd432fc.css.map": "/static/css/main.ffd432fc.css.map",
-    "main.68a2e8d4.js.map": "/static/js/main.68a2e8d4.js.map",
+    "main.beee3a43.js.map": "/static/js/main.beee3a43.js.map",
     "453.17653a4e.chunk.js.map": "/static/js/453.17653a4e.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.ffd432fc.css",
-    "static/js/main.68a2e8d4.js"
+    "static/js/main.beee3a43.js"
   ]
 }
