@@ -1,38 +1,37 @@
 .archive-container {
-  padding: 40px 60px;
-  max-width: 1400px;
+  padding: 18px 34px;
+  max-width: 1368px;
   margin: 0 auto;
 }
 
 .archive-container h1 {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 28px;
   color: #333;
 }
 
 .magazine-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 48px 32px;
-  justify-items: center;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px 20px;
+  justify-items: stretch;
 }
 
 .magazine-item {
   width: 100%;
-  max-width: 420px;
   background: #d1d2d1;
   border-radius: 12px;
   box-shadow: 0 6px 24px rgba(0,0,0,0.10);
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 24px;
+  padding-bottom: 12px;
 }
 
-.magazine-cover {
+.archive-container .magazine-cover {
   width: 100%;
-  height: 560px;
-  background: #fff;
+  height: 420px;
+  background: #d1d2d1;
   border-radius: 12px 12px 0 0;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
@@ -43,33 +42,33 @@
   justify-content: center;
 }
 
-.magazine-cover img {
+.archive-container .magazine-cover img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
 }
 
-.magazine-cover:hover {
+.archive-container .magazine-cover:hover {
   transform: scale(1.03);
 }
 
 .magazine-info {
   width: 100%;
   text-align: center;
-  margin-top: 18px;
+  margin-top: 10px;
 }
 
 .magazine-issue {
-  font-size: 1.35rem;
+  font-size: 1.2rem;
   font-weight: 600;
   color: #222;
 }
 
 .magazine-date {
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   color: #666;
-  margin-top: 4px;
+  margin-top: 2px;
   font-style: italic;
 }
 
@@ -140,15 +139,11 @@
 @media (max-width: 1024px) {
   .magazine-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 32px 24px;
+    gap: 28px 20px;
   }
   
-  .magazine-item {
-    max-width: 380px;
-  }
-  
-  .magazine-cover {
-    height: 500px;
+  .archive-container .magazine-cover {
+    height: 520px;
   }
 }
 
@@ -159,14 +154,10 @@
   
   .magazine-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 24px 16px;
+    gap: 24px 14px;
   }
   
-  .magazine-item {
-    max-width: 320px;
-  }
-  
-  .magazine-cover {
+  .archive-container .magazine-cover {
     height: 420px;
   }
   
@@ -189,12 +180,8 @@
     gap: 20px;
   }
   
-  .magazine-item {
-    max-width: 280px;
-  }
-  
-  .magazine-cover {
-    height: 370px;
+  .archive-container .magazine-cover {
+    height: 420px;
   }
   
   .magazine-issue {
