@@ -25,21 +25,22 @@ import coverTibbiye20 from "../assets/png/coverTibbiye20.png";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.mjs`;
 
-const Pages = React.forwardRef((props, ref) => {
+const FlipPage = React.forwardRef(({ pageNumber, pdfDoc }, ref) => {
   return (
-    <div className="demoPage" ref={ref}>
-      <p>{props.children}</p>
+    <div className="page" ref={ref}>
+      <Page pageNumber={pageNumber} pdf={pdfDoc} width={550} renderAnnotationLayer={false} renderTextLayer={false} />
     </div>
   );
 });
 
-Pages.displayName = 'Pages';
+FlipPage.displayName = 'FlipPage';
 
 export default function Archive() {
     const { magazines: adminMagazines } = useData();
     const [open, setOpen] = useState(false);
     const [selectedMagazine, setSelectedMagazine] = useState(null);
     const [numPages, setNumPages] = useState(null);
+    const [pdf, setPdf] = useState(null);
     const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
@@ -53,8 +54,9 @@ export default function Archive() {
         return () => window.removeEventListener('resize', checkScreenSize);
     }, []);
 
-    function onDocumentLoadSuccess({ numPages }) {
-        setNumPages(numPages);
+    function onDocumentLoadSuccess(pdfObj) {
+        setNumPages(pdfObj.numPages);
+        setPdf(pdfObj);
     }
 
     // Statik dergiler
@@ -100,6 +102,8 @@ export default function Archive() {
     const handleClose = (e) => {
         e.stopPropagation();
         setOpen(false);
+        setPdf(null);
+        setNumPages(null);
     };
 
     return (
@@ -134,23 +138,23 @@ export default function Archive() {
                     <div className="modal-overlay" onClick={handleClose}>
                         <button className="close-btn" onClick={handleClose}>&times;</button>
                         <div onClick={(e) => e.stopPropagation()}>
-                            <HTMLFlipBook 
-                                width={600} 
-                                height={770}
-                                showCover={true}
-                                flippingTime={1000}
-                                usePortrait={false}
-                                startPage={1}
-                                startZIndex={1}
-                            >
-                                {[...Array(numPages).keys()].map((pNum) => (
-                                    <Pages key={pNum} number={pNum + 1}>
-                                        <Document file={selectedMagazine.pdf} onLoadSuccess={onDocumentLoadSuccess}>
-                                            <Page pageNumber={pNum + 1} width={550} renderAnnotationLayer={false} renderTextLayer={false} />
-                                        </Document>
-                                    </Pages>
-                                ))}
-                            </HTMLFlipBook>
+                            <Document file={selectedMagazine.pdf} onLoadSuccess={onDocumentLoadSuccess}>
+                                {pdf && numPages && (
+                                    <HTMLFlipBook
+                                        width={600}
+                                        height={770}
+                                        showCover={true}
+                                        flippingTime={1000}
+                                        usePortrait={false}
+                                        startPage={1}
+                                        startZIndex={1}
+                                    >
+                                        {[...Array(numPages).keys()].map((pNum) => (
+                                            <FlipPage key={pNum} pageNumber={pNum + 1} pdfDoc={pdf} />
+                                        ))}
+                                    </HTMLFlipBook>
+                                )}
+                            </Document>
                         </div>
                     </div>
                 )
