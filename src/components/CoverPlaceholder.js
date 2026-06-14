@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import HTMLFlipBook from 'react-pageflip';
 import { Document, Page, pdfjs } from 'react-pdf';
 import coverTibbiye20 from "../assets/png/coverTibbiye20.png";
-const pdf = process.env.PUBLIC_URL + '/journals/tibbiyeli20.pdf';
 import MobilePDFViewer from './MobilePDFViewer';
 import "./CoverPlaceholder.css";
+
+const pdf = process.env.PUBLIC_URL + '/journals/tibbiyeli20.pdf';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.mjs`;
 
