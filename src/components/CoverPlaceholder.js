@@ -23,10 +23,22 @@ export default function CoverPlaceholder() {
   const [open, setOpen] = useState(false);
   const [numPages, setNumPages] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [bookSize, setBookSize] = useState({ width: 550, height: 770 });
 
   useEffect(() => {
     const checkScreenSize = () => {
       setIsMobile(window.innerWidth <= 768);
+
+      const aspectRatio = 550 / 770;
+      const maxHeight = window.innerHeight - 80;
+      const maxWidth = (window.innerWidth - 80) / 2;
+      let height = Math.min(770, maxHeight);
+      let width = height * aspectRatio;
+      if (width > maxWidth) {
+        width = maxWidth;
+        height = width / aspectRatio;
+      }
+      setBookSize({ width: Math.round(width), height: Math.round(height) });
     };
 
     checkScreenSize();
@@ -62,8 +74,8 @@ export default function CoverPlaceholder() {
             <button className="close-btn" onClick={handleClose}>&times;</button>
             <div onClick={(e) => e.stopPropagation()}>
               <HTMLFlipBook 
-                width={520} 
-                height={670}
+                width={bookSize.width} 
+                height={bookSize.height}
                 showCover={true}
                 flippingTime={1000}
                 usePortrait={false}
@@ -73,7 +85,7 @@ export default function CoverPlaceholder() {
                 {[...Array(numPages).keys()].map((pNum) => (
                   <Pages key={pNum} number={pNum + 1}>
                     <Document file={pdf} onLoadSuccess={onDocumentLoadSuccess}>
-                      <Page pageNumber={pNum + 1} width={550} renderAnnotationLayer={false} renderTextLayer={false} />
+                      <Page pageNumber={pNum + 1} width={bookSize.width} renderAnnotationLayer={false} renderTextLayer={false} />
                     </Document>
                   </Pages>
                 ))}

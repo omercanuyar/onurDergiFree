@@ -27,10 +27,10 @@ import coverTibbiye21 from "../assets/png/coverTibbiye21.png";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.mjs`;
 
-const FlipPage = React.forwardRef(({ pageNumber, pdfDoc }, ref) => {
+const FlipPage = React.forwardRef(({ pageNumber, pdfDoc, width = 550 }, ref) => {
   return (
     <div className="page" ref={ref}>
-      <Page pageNumber={pageNumber} pdf={pdfDoc} width={550} renderAnnotationLayer={false} renderTextLayer={false} />
+      <Page pageNumber={pageNumber} pdf={pdfDoc} width={width} renderAnnotationLayer={false} renderTextLayer={false} />
     </div>
   );
 });
@@ -44,10 +44,22 @@ export default function Archive() {
     const [numPages, setNumPages] = useState(null);
     const [pdf, setPdf] = useState(null);
     const [isMobile, setIsMobile] = useState(false);
+    const [bookSize, setBookSize] = useState({ width: 550, height: 770 });
 
     useEffect(() => {
         const checkScreenSize = () => {
             setIsMobile(window.innerWidth <= 768);
+
+            const aspectRatio = 550 / 770;
+            const maxHeight = window.innerHeight - 80;
+            const maxWidth = (window.innerWidth - 80) / 2;
+            let height = Math.min(770, maxHeight);
+            let width = height * aspectRatio;
+            if (width > maxWidth) {
+                width = maxWidth;
+                height = width / aspectRatio;
+            }
+            setBookSize({ width: Math.round(width), height: Math.round(height) });
         };
 
         checkScreenSize();
@@ -150,11 +162,11 @@ export default function Archive() {
                     <div className="modal-overlay" onClick={handleClose}>
                         <button className="close-btn" onClick={handleClose}>&times;</button>
                         <div onClick={(e) => e.stopPropagation()}>
-                            <Document file={selectedMagazine.pdf} onLoadSuccess={onDocumentLoadSuccess}>
+                            <Document key={selectedMagazine.id} file={selectedMagazine.pdf} onLoadSuccess={onDocumentLoadSuccess}>
                                 {pdf && numPages && (
                                     <HTMLFlipBook
-                                        width={520}
-                                        height={670}
+                                        width={bookSize.width}
+                                        height={bookSize.height}
                                         showCover={true}
                                         flippingTime={1000}
                                         usePortrait={false}
@@ -162,7 +174,7 @@ export default function Archive() {
                                         startZIndex={1}
                                     >
                                         {[...Array(numPages).keys()].map((pNum) => (
-                                            <FlipPage key={pNum} pageNumber={pNum + 1} pdfDoc={pdf} />
+                                            <FlipPage key={pNum} pageNumber={pNum + 1} pdfDoc={pdf} width={bookSize.width} />
                                         ))}
                                     </HTMLFlipBook>
                                 )}
