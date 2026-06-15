@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import HTMLFlipBook from 'react-pageflip';
 import { Document, Page, pdfjs } from 'react-pdf';
-import coverTibbiye20 from "../assets/png/coverTibbiye20.png";
+import coverTibbiye21 from "../assets/png/coverTibbiye21.png";
 import MobilePDFViewer from './MobilePDFViewer';
 import "./CoverPlaceholder.css";
 
-const pdf = process.env.PUBLIC_URL + '/journals/tibbiyeli20.pdf';
+const pdf = process.env.PUBLIC_URL + '/journals/tibbiyeli21.pdf';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.mjs`;
 
@@ -35,6 +35,14 @@ export default function CoverPlaceholder() {
     return () => window.removeEventListener('resize', checkScreenSize);
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = open ? 'hidden' : '';
+
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [open]);
+
   function onDocumentLoadSuccess({ numPages }) {
     setNumPages(numPages);
   }
@@ -54,8 +62,8 @@ export default function CoverPlaceholder() {
             <button className="close-btn" onClick={handleClose}>&times;</button>
             <div onClick={(e) => e.stopPropagation()}>
               <HTMLFlipBook 
-                width={600} 
-                height={770}
+                width={520} 
+                height={670}
                 showCover={true}
                 flippingTime={1000}
                 usePortrait={false}
@@ -75,7 +83,7 @@ export default function CoverPlaceholder() {
         )
       ) : (
         <div className="cover-frame" onClick={() => setOpen(true)}>
-          <img src={coverTibbiye20} alt="Dergi Kapağı" style={{ width: "100%", height: "100%" }} />
+          <img src={coverTibbiye21} alt="Dergi Kapağı" style={{ width: "100%", height: "100%" }} />
         </div>
       )}
     </div>

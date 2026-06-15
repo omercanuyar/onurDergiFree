@@ -5,7 +5,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
 }
 
 code {
@@ -25,7 +24,7 @@ html {
 /* Prevent horizontal scroll on mobile */
 body, html {
   max-width: 100%;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 /* Touch-friendly button styles */
